@@ -4,7 +4,7 @@ public class Admin :IAdmin
 {
     private string _name;
     private string _password;
-
+    
     public Admin(string name, string password)
     {
         _name = name;
@@ -29,7 +29,7 @@ public class Admin :IAdmin
     }
     public void AddNewMovie(int movie_id, string name, string description, int duration)
     {
-        throw new NotImplementedException();
+        //_movies.Add();
     }
 
     public void DeleteMovie(string name)

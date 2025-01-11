@@ -3,7 +3,7 @@
 public class Movie
 {
     private string _name; 
-    private int _duration; /*min*/
+    private int _duration; //minute
     private string _movieDescription;
     private List<DateTime> _dataDeAfisare=new List<DateTime>();
 

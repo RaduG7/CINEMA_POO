@@ -6,12 +6,13 @@ public class DataManager
     private List<Sala> _sali = new List<Sala>();
     private List<Admin> _admins = new List<Admin>();
 
-    public void GetMoviesFromTxt()/*prioritate: 1*/
+    public void GetMoviesFromTxt()  //prioritate: 1
     {
         string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string fileName = "Movie.txt";
         string filePath = Path.Combine(currentDirectory, fileName);
 
+        //citirea datelor din fisier (ordinea lor este NUME, DURATA, DESCRIERE, urmate de AN/LUNA/ZI ORA MINUT)
         using (StreamReader f = new StreamReader(filePath))
         {
 
@@ -31,6 +32,8 @@ public class DataManager
                 {
 
                     line = f.ReadLine();
+
+                    //convertirea datelor la tipul de data DataTime
                     if (line != ".")
                     {
                         int year = int.Parse(line);
@@ -198,7 +201,7 @@ public class DataManager
 
     public void SaveAdminToTxt(List<Admin> admins)
     {
-        string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+        string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string fileName = "Admin.txt";
         string filePath = Path.Combine(currentDirectory, fileName);
         using (StreamWriter f = new StreamWriter(filePath))

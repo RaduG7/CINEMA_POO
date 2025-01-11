@@ -2,6 +2,8 @@
 
 public class Utilizator:IUtilizator
 {
+    private string _numeSiPrenume;
+    private string _email;
     public void ViewMovieList(string title)
     {
         throw new NotImplementedException();

@@ -6,7 +6,11 @@ public class Main
     {
         static void Main(string[] args)
         { 
-            Console.Write("haha");
+            DataManager dataManager = new DataManager();
+            dataManager.GetMoviesFromTxt();
+            dataManager.AfisareMovie();
+            List<Movie> movies = dataManager.GetMovies();
+            dataManager.SaveMovieToTxt(movies);
         }
     
     }   

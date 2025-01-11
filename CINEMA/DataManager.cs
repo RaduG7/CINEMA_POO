@@ -4,7 +4,7 @@ public class DataManager
 {
     private List<Movie> _movies = new List<Movie>();
 
-    public void GetMoviesFromTxt()
+    public void GetMoviesFromTxt()/*prioritate: 1*/
     {
         string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string fileName = "Movie.txt";

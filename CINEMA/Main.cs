@@ -6,8 +6,6 @@ public class Main
     {
         static void Main(string[] args)
         { 
-            DataManager dataManager = new DataManager();
-            dataManager.GetMoviesFromTxt();
             Console.Write("haha");
         }
     

@@ -1,6 +1,6 @@
 ﻿namespace Proiect_Cinema;
 
-public class Admin :IAdmin
+public class Admin
 {
     private string _name;
     private string _password;
@@ -21,15 +21,14 @@ public class Admin :IAdmin
         return _password;
     }
 
-    public void AfisareAdmin()
+    public override string ToString() 
     {
-        Console.WriteLine($"Nume: {_name}");
-        Console.WriteLine($"Parola: {_password}");
-        Console.WriteLine();
+        return $"Nume: {_name}\nParola: {_password}\n";
     }
-    public void AddNewMovie(int movie_id, string name, string description, int duration)
+   
+    public void AddNewMovie(DataManager dataManager, List<Movie> movies)
     {
-        //_movies.Add();
+        dataManager.AdaugareMovie(movies);
     }
 
     public void DeleteMovie(string name)

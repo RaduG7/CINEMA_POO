@@ -32,7 +32,7 @@ public class Movie
         }
         Console.WriteLine();
     }
-
+    
     public string GetName()
     {
         return _name;

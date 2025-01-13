@@ -1,4 +1,6 @@
-﻿namespace Proiect_Cinema;
+﻿using System.Globalization;
+
+namespace Proiect_Cinema;
 
 public class DataManager
 {
@@ -218,8 +220,64 @@ public class DataManager
     {
         foreach (Admin admin in admins)
         {
-            admin.AfisareAdmin();
+            Console.WriteLine(admin);
         }
+    }
+
+    public void AdaugareMovie(List<Movie> movies)
+    {
+        Console.WriteLine("Doriti sa adaugati un nou film?");
+        string raspuns = Console.ReadLine()?.ToLower();
+
+        if (raspuns == "da")
+        {
+            Console.WriteLine("Introduceti titlul filmului:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Durata filmului in format in minute:");
+            int duration = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Introduceti descriere:");
+            string description = Console.ReadLine();
+
+            Console.WriteLine("Data filmului: ");
+            Movie film = new Movie(name, duration, description);
+            Console.WriteLine("Introduceti datele cand va rula filmul, iar pentru a va opri, scrieti 'stop':");
+            while (true)
+            {
+                Console.WriteLine("Introduceti anul (yyyy):");
+                string an = Console.ReadLine();
+
+                if (an.ToLower() == "stop")
+                    break;
+                try
+                {
+                    Console.WriteLine("Luna:");
+                    int month = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ziua:");
+                    int day = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ora:");
+                    int hour = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Minutul:");
+                    int minute = int.Parse(Console.ReadLine());
+                    int year = int.Parse(an);
+
+                    film.MakeDate(year, month, day, hour, minute);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Data introdusa este gresita.Incercati din nou.");
+                }
+                movies.Add(film);
+                Console.WriteLine("Film adaugat cu succes!");
+            }
+
+        }
+        else
+        {
+            Console.WriteLine("Nu s-a adaugat niciun film.");
+        }
+
     }
 
     public List<Admin> GetAdmins()

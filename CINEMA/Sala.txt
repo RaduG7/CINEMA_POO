@@ -1,11 +1,9 @@
 1
 60
-32
 Matricea
 .
 2
 100
-81
 Avangers
 Matricea
 .

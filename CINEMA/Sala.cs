@@ -3,16 +3,12 @@
 public class Sala
 {
     private int _idSala;
-    private int _numberOfSeats;
-    private int _taken_seats;
-    private bool _available;
+    private int _numberOfSeats; 
     private List<Movie> _movies=new List<Movie>();
 
-    public Sala(int numberOfSeats, int takenSeats, bool available,int idSala)
+    public Sala(int numberOfSeats,int idSala)
     {
         _numberOfSeats = numberOfSeats;
-        _taken_seats = takenSeats;
-        _available = available;
         _idSala = idSala;
     }
 
@@ -25,8 +21,6 @@ public class Sala
     {
         Console.WriteLine($"Sala cu numarul{_idSala}");
         Console.WriteLine($"Locuri totale in sala:{_numberOfSeats}");
-        Console.WriteLine($"Locuri ocupate:{_taken_seats}");
-        Console.WriteLine($"Disponibilitate: {_available}");
         Console.WriteLine("Filmele care se afiseaza in sala:");
         foreach (Movie movie in _movies)
         {
@@ -39,12 +33,7 @@ public class Sala
     {
         return _numberOfSeats;
     }
-
-    public int GetTakenSeats()
-    {
-        return _taken_seats;
-    }
-
+    
     public List<Movie> GetMovies()
     {
         return _movies;

@@ -6,6 +6,7 @@ public class Movie
     private int _duration; //minute
     private string _movieDescription;
     private List<DateTime> _dataDeAfisare=new List<DateTime>();
+    private List<int> _takenSeats=new List<int>();
 
     public Movie( string name, int duration, string movieDescription )
     {
@@ -20,15 +21,22 @@ public class Movie
         _dataDeAfisare.Add(date);
     }
 
+    public void AddTakenSeat(int seat)
+    {
+        _takenSeats.Add(seat);
+    }
+
     public void AfisareMovie()
     {
         Console.WriteLine($"Titlu: {_name}");
         Console.WriteLine($"Durata: {_duration}");
         Console.WriteLine($"Despre film:\n{_movieDescription}");
-        
-        foreach (DateTime data in _dataDeAfisare)
+
+        int i = 0;
+        for (i=0; i<_takenSeats.Count; i++)
         {
-            Console.WriteLine($"Data: {data.ToShortDateString()} de la ora: {data.ToShortTimeString()}");
+            Console.WriteLine($"Data: {_dataDeAfisare[i].ToShortDateString()} de la ora: {_dataDeAfisare[i].ToShortTimeString()}");
+            Console.WriteLine($"Locuri ocupate: {_takenSeats[i]}");
         }
         Console.WriteLine();
     }
@@ -51,5 +59,10 @@ public class Movie
     public List<DateTime> GetDataDeAfisare()
     {
         return _dataDeAfisare;
+    }
+
+    public List<int> GetTakenSeats()
+    {
+        return _takenSeats;
     }
 }

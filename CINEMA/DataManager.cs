@@ -1,7 +1,8 @@
 ﻿using System.Globalization;
 
-namespace Proiect_Cinema;
+namespace Proiect_Cinema; 
 
+//Se ocupa cu gestionarea conexiunii dintre fisier txt si datele din program
 public class DataManager
 {
     private List<Movie> _movies = new List<Movie>();
@@ -48,6 +49,9 @@ public class DataManager
                         line = f.ReadLine();
                         int minute = int.Parse(line);
                         m.MakeDate(year, month, day, hour, minute);
+                        line = f.ReadLine();
+                        int takenseats = int.Parse(line);
+                        m.AddTakenSeat(takenseats);
                     }
                     else
                     {
@@ -88,13 +92,16 @@ public class DataManager
               f.WriteLine(m.GetDuration());
               f.WriteLine(m.GetMovieDescription());
               var dateList = m.GetDataDeAfisare();
-              foreach (DateTime date in dateList)
+              var takenseats = m.GetTakenSeats();
+              int i = 0;
+              for (i = 0; i < dateList.Count; i++)
               {
-                  f.WriteLine(date.Year);
-                  f.WriteLine(date.Month);
-                  f.WriteLine(date.Day);
-                  f.WriteLine(date.Hour);
-                  f.WriteLine(date.Minute);
+                  f.WriteLine(dateList[i].Year);
+                  f.WriteLine(dateList[i].Month);
+                  f.WriteLine(dateList[i].Day);
+                  f.WriteLine(dateList[i].Hour);
+                  f.WriteLine(dateList[i].Minute);
+                  f.WriteLine(takenseats[i]);
               }
               f.WriteLine(".");
             }
@@ -115,16 +122,7 @@ public class DataManager
             {
                 int idSala = int.Parse(f.ReadLine());
                 int numberOfSeats = int.Parse(f.ReadLine());
-                int takenSeats = int.Parse(f.ReadLine());
-                if (takenSeats >= numberOfSeats)
-                {
-                    available = false;
-                }
-                else
-                {
-                    available = true;
-                }
-                Sala sala=new Sala(numberOfSeats,takenSeats,available,idSala);
+                Sala sala=new Sala(numberOfSeats,idSala);
                 ok = true;
                 while(ok)
                 {
@@ -168,7 +166,6 @@ public class DataManager
             {
                 f.WriteLine(sala.GetIdSala());
                 f.WriteLine(sala.GetNumberOfSeats());
-                f.WriteLine(sala.GetTakenSeats());
                 List<Movie> movies = sala.GetMovies();
                 foreach (Movie m in movies)
                 {

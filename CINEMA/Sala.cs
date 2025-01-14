@@ -19,7 +19,7 @@ public class Sala
 
     public void AfisareSala()
     {
-        Console.WriteLine($"Sala cu numarul{_idSala}");
+        Console.WriteLine($"Sala cu numarul {_idSala}");
         Console.WriteLine($"Locuri totale in sala:{_numberOfSeats}");
         Console.WriteLine("Filmele care se afiseaza in sala:");
         foreach (Movie movie in _movies)
@@ -29,6 +29,12 @@ public class Sala
         Console.WriteLine();
     }
 
+    /*public int GetAvailableSeats(Movie movie)
+    {
+        int takenSeats = movie.GetTakenSeats().Sum(); 
+        int availableSeats = _numberOfSeats - takenSeats; 
+        return availableSeats;
+    }*/
     public int GetNumberOfSeats()
     {
         return _numberOfSeats;

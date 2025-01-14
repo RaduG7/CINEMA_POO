@@ -1,9 +1,6 @@
 1
 60
-Matricea
 .
 2
-100
-Avangers
-Matricea
+120
 .

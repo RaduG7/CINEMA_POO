@@ -1,29 +1,23 @@
 ﻿namespace Proiect_Cinema;
 
-public class Utilizator:IUtilizator
+public class Utilizator
 {
-    public void ViewMovieList(string title)
+    public void ViewMovieList(DataManager dataManager, List <Movie> movies)
     {
-        throw new NotImplementedException();
+        dataManager.AfisareFilmeUtilizator(movies);
     }
 
-    public void SearchMovieByDate(DateTime airdate)
+    public void SearchMovieByDate(DataManager dataManager, List<Movie> movies)
     {
-        throw new NotImplementedException();
+        dataManager.CautareFilmeDupaData(movies);
+    }
+    public void SearchMovieByTitle(DataManager dataManager, List<Movie> movies)
+    {
+        dataManager.CautareFilmDupaTitlu(movies);
     }
 
-    public void InspectMovie(string title, DateTime airdate, int theater, int duration, string details)
+    public void SeatReservation(DataManager dataManager, List<Movie> movies)
     {
-        throw new NotImplementedException();
-    }
-
-    public void SearchMovieByTitle(string title)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SeatReservation(string title, int theater, int seatNumber)
-    {
-        throw new NotImplementedException();
+        dataManager.RezervareFilm(movies);
     }
 }

@@ -31,18 +31,18 @@ public class Admin
         dataManager.AdaugareMovie(movies);
     }
 
-    public void DeleteMovie(string name)
+    public void RemoveMovie(DataManager dataManager,List<Movie> movie)
     {
-        throw new NotImplementedException();
+        dataManager.StergereMovie(movie);
     }
 
-    public void ChangeMovieTheater(string rooms)
+    public void AddOrDeleteDate(DataManager dataManager, List<Movie> movies)
     {
-        throw new NotImplementedException();
+        dataManager.ModificareInterval(movies);
     }
 
-    public void OcupiedSeats()
+    public void ModifySeats(DataManager dataManager)
     {
-        throw new NotImplementedException();
-    }  
+        dataManager.ModificareLocuriSala();
+    }
 }

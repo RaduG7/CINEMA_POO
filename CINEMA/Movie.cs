@@ -29,7 +29,7 @@ public class Movie
     public void AfisareMovie()
     {
         Console.WriteLine($"Titlu: {_name}");
-        Console.WriteLine($"Durata: {_duration}");
+        Console.WriteLine($"Durata: {_duration} minute");
         Console.WriteLine($"Despre film:\n{_movieDescription}");
 
         int i = 0;

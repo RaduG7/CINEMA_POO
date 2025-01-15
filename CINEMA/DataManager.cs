@@ -78,7 +78,7 @@ public class DataManager
         return _movies;
     }
 
-    public void SaveMovieToTxt(List<Movie> movies)
+    public void SaveMovieToTxt()
     {
         string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string fileName = "Movie.txt";
@@ -86,7 +86,7 @@ public class DataManager
 
         using (StreamWriter f = new StreamWriter(filePath))
         {
-            foreach (Movie m in movies)
+            foreach (Movie m in _movies)
             {
                 f.WriteLine(m.GetName());
                 f.WriteLine(m.GetDuration());
@@ -162,7 +162,7 @@ public class DataManager
         string filePath = Path.Combine(currentDirectory, fileName);
         using (StreamWriter f = new StreamWriter(filePath))
         {
-            foreach (Sala sala in sali)
+            foreach (Sala sala in _sali)
             {
                 f.WriteLine(sala.GetIdSala());
                 f.WriteLine(sala.GetNumberOfSeats());
@@ -198,14 +198,14 @@ public class DataManager
         }
     }
 
-    public void SaveAdminToTxt(List<Admin> admins)
+    public void SaveAdminToTxt()
     {
         string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string fileName = "Admin.txt";
         string filePath = Path.Combine(currentDirectory, fileName);
         using (StreamWriter f = new StreamWriter(filePath))
         {
-            foreach (Admin admin in admins)
+            foreach (Admin admin in _admins)
             {
                 f.WriteLine(admin.GetName());
                 f.WriteLine(admin.GetPassword());
@@ -226,7 +226,7 @@ public class DataManager
         return _admins;
     }
     // PENTRU ADMIN DE AICI IN JOS
-    public void AdaugareMovie(List<Movie> movies)
+    public void AdaugareMovie()
     {
         Console.WriteLine("Doriti sa adaugati un nou film?");
         string raspuns = Console.ReadLine()?.ToLower();
@@ -268,7 +268,7 @@ public class DataManager
                     film.MakeDate(year, month, day, hour, minute);
                     film.AddTakenSeat(locuri);
 
-                    movies.Add(film);
+                    _movies.Add(film);
                     Console.WriteLine("Film adaugat cu succes!");
 
                 }
@@ -285,41 +285,41 @@ public class DataManager
 
     }
 
-    public void StergereMovie(List<Movie> movies)
+    public void StergereMovie()
     {
-        for (int i = 0; i < movies.Count; i++)
+        for (int i = 0; i < _movies.Count; i++)
         {
-            Console.WriteLine($"{i + 1}.{movies[i].GetName()}");
+            Console.WriteLine($"{i + 1}.{_movies[i].GetName()}");
         }
 
         Console.WriteLine("Introduceti numarul filmului pe care doriti sa il stergeti:");
         int index = int.Parse(Console.ReadLine()) - 1;
-        if (index < 0 || index >= movies.Count)
+        if (index < 0 || index >= _movies.Count)
         {
             Console.WriteLine("Nu ati selectat corect filmul, incercati din nou.");
             return;
         }
 
-        movies.RemoveAt(index);
+        _movies.RemoveAt(index);
         Console.WriteLine("Filmul a fost sters cu succes!");
     }
 
-    public void ModificareInterval(List<Movie> movies)
+    public void ModificareInterval()
     {
-        for (int i = 0; i < movies.Count; i++)
+        for (int i = 0; i < _movies.Count; i++)
         {
-            Console.WriteLine($"{i + 1}.{movies[i].GetName()}");
+            Console.WriteLine($"{i + 1}.{_movies[i].GetName()}");
         }
 
         Console.WriteLine("Introduceti numarul filmului pe care doriti sa il modificati:");
         int index = int.Parse(Console.ReadLine()) - 1;
-        if (index < 0 || index >= movies.Count)
+        if (index < 0 || index >= _movies.Count)
         {
             Console.WriteLine("Nu ati selectat corect filmul, incercati din nou.");
             return;
         }
 
-        Movie filmAles = movies[index];
+        Movie filmAles = _movies[index];
 
         Console.WriteLine($"Filmul ales este {filmAles.GetName()}\nDoriti sa adaugati sau sa stergeti interval?(adauga/sterge)");
         string optiune = Console.ReadLine()?.ToLower();
@@ -410,11 +410,11 @@ public class DataManager
     //PENTRU UTILIZATOR DE AICI IN JOS
 
 
-    public void AfisareFilmeUtilizator(List<Movie> movies)
+    public void AfisareFilmeUtilizator()
     {
         Console.WriteLine("Filme ce se ruleaza: ");
         int i = 0;
-        foreach(var movie in movies)
+        foreach(var movie in _movies)
         {
             Console.WriteLine($"{i+1}.{movie.GetName()}");
             i++;
@@ -425,9 +425,9 @@ public class DataManager
         {
             Console.WriteLine("Introduceti numarul filmului:");
             int index = int.Parse(Console.ReadLine()) - 1;
-            if (index >= 0 && index < movies.Count)
+            if (index >= 0 && index < _movies.Count)
             {
-                movies[index].AfisareMovie();
+                _movies[index].AfisareMovie();
             }
             else
             {
@@ -438,7 +438,7 @@ public class DataManager
     }
 
 
-    public void CautareFilmeDupaData(List<Movie> movies)
+    public void CautareFilmeDupaData()
     {
         Console.WriteLine("Introduceti data la care doriti sa vedeti filmele:");
         Console.WriteLine("Anul:");
@@ -451,7 +451,7 @@ public class DataManager
 
         DateTime data = new DateTime(year, month, day);
         bool ok = false;
-        foreach (var movie in movies)
+        foreach (var movie in _movies)
         {
             foreach (var date in movie.GetDataDeAfisare())
             {
@@ -468,12 +468,12 @@ public class DataManager
         }
     }
 
-    public void CautareFilmDupaTitlu(List<Movie> movies)
+    public void CautareFilmDupaTitlu()
     {
         Console.WriteLine("Introduceti titlul filmului:");
         string titlu = Console.ReadLine();
         bool ok = false;
-        foreach (var movie in movies)
+        foreach (var movie in _movies)
         {
             if (movie.GetName() == titlu)
             {
@@ -487,27 +487,38 @@ public class DataManager
         }
     }
 
-    public void RezervareFilm(List<Movie> movies)
+    public void RezervareFilm()
     {
-        AfisareFilmeUtilizator(movies);
+        AfisareFilmeUtilizator();
         Console.WriteLine("Introduceti numarul filmului pe care doriti sa il vizionati:");
         int index = int.Parse(Console.ReadLine()) - 1;
-        if (index >= 0 && index < movies.Count)
+        if (index >= 0 && index < _movies.Count)
         {
-            Movie movie = movies[index];
-            Console.WriteLine("Introduceti numarul locuri pentru rezervare:");
-            int loc = int.Parse(Console.ReadLine());
-            if (loc > 0 && loc <= 5)
+            Movie movie = _movies[index];
+            //afisare date ale filmului
+            movie.AfisareDate();
+            Console.WriteLine("Introduceti numarul datei la care doriti sa vizualizati filmu:");
+            index = int.Parse(Console.ReadLine()) - 1;
+            if (index >= 0 && index < movie.GetTakenSeats().Count)
+
             {
-                movie.AddTakenSeat(loc);
-              
-                Console.WriteLine("Locuri rezervate cu succes!");
-                
-                SaveMovieToTxt(movies);
+                Console.WriteLine("Introduceti numarul locuri pentru rezervare:");
+                int loc = int.Parse(Console.ReadLine());
+                if (loc > 0 && loc <= 5)
+                {
+                    movie.IncrementTakenSeat(index,loc);
+
+                    Console.WriteLine("Locuri rezervate cu succes!");
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Ati depasit numarul maxim de locuri ce se pot face per rezervare.");
+                }
             }
             else
             {
-                Console.WriteLine("Ati depasit numarul maxim de locuri ce se pot face per rezervare.");
+                Console.WriteLine("Data nu a fost gasita.");
             }
         }
         else

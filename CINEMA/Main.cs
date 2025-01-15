@@ -107,7 +107,7 @@ public class Main
             string optiune3 = Console.ReadLine().ToLower();
             if(optiune3 == "da")
             {
-                utilizator.ViewMovieList(dataManager, movies);
+                utilizator.ViewMovieList(dataManager);
             }
             else
             {
@@ -120,7 +120,7 @@ public class Main
             string optiune4 = Console.ReadLine().ToLower();
             if(optiune4 == "da")
             {
-                utilizator.SearchMovieByDate(dataManager, movies);
+                utilizator.SearchMovieByDate(dataManager);
             }
             else
             {
@@ -132,7 +132,7 @@ public class Main
             string optiune5 = Console.ReadLine().ToLower();
             if(optiune5 == "da")
             {
-                utilizator.SearchMovieByTitle(dataManager, movies);
+                utilizator.SearchMovieByTitle(dataManager);
             }
             else
             {
@@ -145,7 +145,7 @@ public class Main
             string optiune6 = Console.ReadLine().ToLower();
             if(optiune6 == "da")
             {
-                utilizator.SeatReservation(dataManager, movies);
+                utilizator.SeatReservation(dataManager);
             }
             else
             {

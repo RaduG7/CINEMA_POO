@@ -26,19 +26,19 @@ public class Admin
         return $"Nume: {_name}\nParola: {_password}\n";
     }
    
-    public void AddNewMovie(DataManager dataManager, List<Movie> movies)
+    public void AddNewMovie(DataManager dataManager)
     {
-        dataManager.AdaugareMovie(movies);
+        dataManager.AdaugareMovie();
     }
 
-    public void RemoveMovie(DataManager dataManager,List<Movie> movie)
+    public void RemoveMovie(DataManager dataManager)
     {
-        dataManager.StergereMovie(movie);
+        dataManager.StergereMovie();
     }
 
-    public void AddOrDeleteDate(DataManager dataManager, List<Movie> movies)
+    public void AddOrDeleteDate(DataManager dataManager)
     {
-        dataManager.ModificareInterval(movies);
+        dataManager.ModificareInterval();
     }
 
     public void ModifySeats(DataManager dataManager)

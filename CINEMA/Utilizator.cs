@@ -2,22 +2,22 @@
 
 public class Utilizator
 {
-    public void ViewMovieList(DataManager dataManager, List <Movie> movies)
+    public void ViewMovieList(DataManager dataManager)
     {
-        dataManager.AfisareFilmeUtilizator(movies);
+        dataManager.AfisareFilmeUtilizator();
     }
 
-    public void SearchMovieByDate(DataManager dataManager, List<Movie> movies)
+    public void SearchMovieByDate(DataManager dataManager)
     {
-        dataManager.CautareFilmeDupaData(movies);
+        dataManager.CautareFilmeDupaData();
     }
-    public void SearchMovieByTitle(DataManager dataManager, List<Movie> movies)
+    public void SearchMovieByTitle(DataManager dataManager)
     {
-        dataManager.CautareFilmDupaTitlu(movies);
+        dataManager.CautareFilmDupaTitlu();
     }
 
-    public void SeatReservation(DataManager dataManager, List<Movie> movies)
+    public void SeatReservation(DataManager dataManager)
     {
-        dataManager.RezervareFilm(movies);
+        dataManager.RezervareFilm();
     }
 }

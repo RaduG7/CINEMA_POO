@@ -40,6 +40,21 @@ public class Movie
         }
         Console.WriteLine();
     }
+
+    public void AfisareDate()
+    {
+        int i = 0;
+        foreach (DateTime date in _dataDeAfisare)
+        {
+            Console.WriteLine($"{i}) Data: {_dataDeAfisare[i].ToShortDateString()} de la ora: {_dataDeAfisare[i].ToShortTimeString()}");
+            i++;
+        }
+    }
+
+    public void IncrementTakenSeat(int i,int rezervedSeats)
+    {
+        _takenSeats[i]+=rezervedSeats;
+    }
     
     public string GetName()
     {

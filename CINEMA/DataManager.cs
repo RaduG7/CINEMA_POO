@@ -233,6 +233,9 @@ public class DataManager
 
         if (raspuns == "da")
         {
+            Console.WriteLine("Introduceti numarul salii: ");
+            int id = int.Parse(Console.ReadLine());
+            
             Console.WriteLine("Introduceti titlul filmului:");
             string name = Console.ReadLine();
 
@@ -269,6 +272,7 @@ public class DataManager
                     film.AddTakenSeat(locuri);
 
                     _movies.Add(film);
+                    _sali[id-1].AddMovie(film);
                     Console.WriteLine("Film adaugat cu succes!");
 
                 }

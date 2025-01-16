@@ -43,11 +43,16 @@
                  SelectionChanged="MoviesListBox_SelectionChanged"/>
 
         <!-- Detalii film selectat -->
-        <TextBlock x:Name="movieDetails" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Width="350" Height="200" Margin="100,10,10,10"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"/>
+        <StackPanel Name="MovieDetailsPanel" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2"  Margin="10">
+            <TextBlock Name="MovieNameText" />
+            <TextBlock Name="MovieDescriptionText" />
+            <TextBlock Name="MovieDurationText" />
+            <ComboBox Name="ShowtimeComboBox" SelectionChanged="ShowtimeComboBox_SelectionChanged"/>
+            <TextBox Name="NumPeopleTextBox" Margin="5"  />
+        </StackPanel>
 
         <!-- Buton pentru rezervare -->
         <Button Content="Rezervare Locuri" Grid.Column="2" Grid.Row="3" Width="150" Height="30" Margin="10" 
-                HorizontalAlignment="Right" VerticalAlignment="Top" Click="RezervareButton_Click"/>
+                HorizontalAlignment="Right" VerticalAlignment="Top" Click="Rezervare"/>
     </Grid>
 </Window>

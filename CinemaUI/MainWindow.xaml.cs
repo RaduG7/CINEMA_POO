@@ -55,7 +55,7 @@ namespace CinemaUI
                     ShowtimeComboBox.Items.Clear();
                     for (int i = 0; i < selectedMovie.GetDataDeAfisare().Count; i++)
                     {
-                        ShowtimeComboBox.Items.Add($"{selectedMovie.GetDataDeAfisare()[i]:HH:mm} ({sali[i].GetNumberOfSeats() - selectedMovie.GetTakenSeats()[i]} locuri disponibile)");
+                        ShowtimeComboBox.Items.Add($"{selectedMovie.GetDataDeAfisare()[i]:dd/MM/yyyy HH:mm} ({sali[i].GetNumberOfSeats() - selectedMovie.GetTakenSeats()[i]} locuri disponibile)");
                     }
                 }
             }

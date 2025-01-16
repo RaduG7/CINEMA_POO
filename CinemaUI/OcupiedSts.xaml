@@ -1,0 +1,26 @@
+﻿<Window x:Class="CinemaUI.OcupiedSts"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaUI"
+        mc:Ignorable="d"
+        Title="OcupiedSts" Height="450" Width="800">
+    <Grid>
+        <Button Grid.Column="0" Grid.Row="0" Content="Inapoi" 
+                Background="Transparent"
+                BorderThickness="0" Click="Back" 
+                FontFamily="Segoe UI Variable Text Semibold" HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" Height="20"/>
+        <StackPanel Margin="20">
+            <TextBlock Text="Selectați un film:" FontSize="16"/>
+            <ComboBox x:Name="moviesComboBox" SelectionChanged="MoviesComboBox_SelectionChanged"/>
+
+            <TextBlock Text="Selectați o rulare:" FontSize="16" Margin="0,10,0,0"/>
+            <ListBox x:Name="datesListBox" SelectionChanged="DatesListBox_SelectionChanged"/>
+
+            <TextBlock Text="Locuri disponibile:" FontSize="16" Margin="0,10,0,0"/>
+            <ListBox x:Name="seatsListBox"/>
+            </StackPanel>
+    </Grid>
+</Window>

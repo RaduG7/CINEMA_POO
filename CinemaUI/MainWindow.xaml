@@ -1,0 +1,53 @@
+﻿<Window x:Class="CinemaUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaUI"
+        mc:Ignorable="d"
+        Title="Cinema" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Button Grid.Column="4" Grid.Row="1" Content="Admin" 
+                Background="Transparent"
+                BorderBrush="Transparent" 
+                BorderThickness="0" Click="AdminLogger"
+                Height="20"/>
+        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
+            <TextBox x:Name="searchBar" Width="300" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                     KeyUp="SearchBar_KeyUp" />
+            <TextBlock Text="Căutați filme după nume sau dată"
+                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Margin="5,0,0,0" Foreground="Gray"
+                       IsHitTestVisible="False" />
+        </Grid>
+
+        <!-- Listă filme -->
+        <ListBox x:Name="moviesListBox" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Width="300" Height="200" Margin="10" 
+                 HorizontalAlignment="Left" VerticalAlignment="Top" 
+                 SelectionChanged="MoviesListBox_SelectionChanged"/>
+
+        <!-- Detalii film selectat -->
+        <TextBlock x:Name="movieDetails" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Width="350" Height="200" Margin="100,10,10,10"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"/>
+
+        <!-- Buton pentru rezervare -->
+        <Button Content="Rezervare Locuri" Grid.Column="2" Grid.Row="3" Width="150" Height="30" Margin="10" 
+                HorizontalAlignment="Right" VerticalAlignment="Top" Click="RezervareButton_Click"/>
+    </Grid>
+</Window>

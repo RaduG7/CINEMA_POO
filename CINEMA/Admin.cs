@@ -25,24 +25,9 @@ public class Admin
     {
         return $"Nume: {_name}\nParola: {_password}\n";
     }
-   
-    public void AddNewMovie(DataManager dataManager)
-    {
-        dataManager.AdaugareMovie();
-    }
 
-    public void RemoveMovie(DataManager dataManager)
-    {
-        dataManager.StergereMovie();
-    }
-
-    public void AddOrDeleteDate(DataManager dataManager)
+    /*public void AddOrDeleteDate(DataManager dataManager)
     {
         dataManager.ModificareInterval();
-    }
-
-    public void ModifySeats(DataManager dataManager)
-    {
-        dataManager.ModificareLocuriSala();
-    }
+    }*/
 }

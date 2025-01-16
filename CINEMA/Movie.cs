@@ -7,6 +7,7 @@ public class Movie
     private string _movieDescription;
     private List<DateTime> _dataDeAfisare=new List<DateTime>();
     private List<int> _takenSeats=new List<int>();
+    private List<int> _sala= new List<int>();
 
     public Movie( string name, int duration, string movieDescription )
     {
@@ -24,6 +25,11 @@ public class Movie
     public void AddTakenSeat(int seat)
     {
         _takenSeats.Add(seat);
+    }
+
+    public void AddSala(int idSala)
+    {
+        _sala.Add(idSala);
     }
 
     public void AfisareMovie()
@@ -79,5 +85,10 @@ public class Movie
     public List<int> GetTakenSeats()
     {
         return _takenSeats;
+    }
+
+    public List<int> GetSala()
+    {
+        return _sala;
     }
 }

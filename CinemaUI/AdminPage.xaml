@@ -1,0 +1,53 @@
+﻿<Window x:Class="CinemaUI.AdminPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaUI"
+        mc:Ignorable="d"
+        Title="AdminPage" Height="450" Width="800">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+   
+        <Button Content="Adauga Film"
+                Grid.Row="0" Grid.Column="0"
+                Margin="10" Width="120" Height="30"
+                HorizontalAlignment="Right" Click="AddMovie"/>
+    
+        <Button Content="Stergere Film"
+                Grid.Row="1" Grid.Column="0"
+                Margin="10" Width="120" Height="30"
+                HorizontalAlignment="Right" Click="RemoveMovie"/>
+      
+        <Button Content="Modificare ora film"
+                Grid.Row="2" Grid.Column="0"
+                Margin="10" Width="120" Height="30"
+                HorizontalAlignment="Right" Click="ModifyHoursForMovies"/>
+        
+        <Button Content="Schimbare sala"
+                Grid.Row="3" Grid.Column="0"
+                Margin="10" Width="120" Height="30"
+                HorizontalAlignment="Right" Click="ChangeTheater"/>
+
+        <Button Content="Locuri ocupate"
+                Grid.Row="4" Grid.Column="0"
+                Margin="10" Width="120" Height="30"
+                HorizontalAlignment="Right" Click="SeatsOcup"/>
+
+        <Button Content="Logout"
+                Grid.Row="5" Grid.Column="0"
+                Margin="10" Width="120" Height="30"
+                HorizontalAlignment="Right"
+                Click="Logout" FontWeight="Bold"/>
+    </Grid>
+</Window>

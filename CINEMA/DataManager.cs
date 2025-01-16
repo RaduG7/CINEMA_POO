@@ -52,6 +52,9 @@ public class DataManager
                         line = f.ReadLine();
                         int takenseats = int.Parse(line);
                         m.AddTakenSeat(takenseats);
+                        line = f.ReadLine();
+                        int sala =int.Parse(line);
+                        m.AddSala(sala);
                     }
                     else
                     {
@@ -78,7 +81,7 @@ public class DataManager
         return _movies;
     }
 
-    public void SaveMovieToTxt()
+    public void SaveMovieToTxt(List<Movie> movies)
     {
         string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string fileName = "Movie.txt";
@@ -93,6 +96,7 @@ public class DataManager
                 f.WriteLine(m.GetMovieDescription());
                 var dateList = m.GetDataDeAfisare();
                 var takenseats = m.GetTakenSeats();
+                var sala = m.GetSala();
                 int i = 0;
                 for (i = 0; i < dateList.Count; i++)
                 {
@@ -102,6 +106,7 @@ public class DataManager
                     f.WriteLine(dateList[i].Hour);
                     f.WriteLine(dateList[i].Minute);
                     f.WriteLine(takenseats[i]);
+                    f.WriteLine(sala[i]);
                 }
                 f.WriteLine(".");
             }
@@ -160,7 +165,7 @@ public class DataManager
         string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string fileName = "Sala.txt";
         string filePath = Path.Combine(currentDirectory, fileName);
-        using (StreamWriter f = new StreamWriter(filePath))
+        using (StreamWriter f = new StreamWriter(filePath, false))
         {
             foreach (Sala sala in _sali)
             {
@@ -226,89 +231,45 @@ public class DataManager
         return _admins;
     }
     // PENTRU ADMIN DE AICI IN JOS
-    public void AdaugareMovie()
+    public void AdaugareMovie(int id, string name, int duration, string description, int year, int month, int day, int hour, int minute, List<Sala>sali)
     {
-        Console.WriteLine("Doriti sa adaugati un nou film?");
-        string raspuns = Console.ReadLine()?.ToLower();
-
-        if (raspuns == "da")
+        int locuri = 0;
+        Movie film = new Movie(name, duration, description);
+        film.MakeDate(year, month, day, hour, minute);
+        film.AddTakenSeat(locuri);
+        film.AddSala(id);
+        _movies.Add(film);
+        foreach(Sala sala in sali)
         {
-            Console.WriteLine("Introduceti numarul salii: ");
-            int id = int.Parse(Console.ReadLine());
-            
-            Console.WriteLine("Introduceti titlul filmului:");
-            string name = Console.ReadLine();
+            if (sala.GetIdSala() == id)
+                sala.AddMovie(film);
+        }
+    }
 
-            Console.WriteLine("Durata filmului in format in minute:");
-            int duration = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Introduceti descriere:");
-            string description = Console.ReadLine();
-
-            Console.WriteLine("Data filmului: ");
-            Movie film = new Movie(name, duration, description);
-            Console.WriteLine("Introduceti datele cand va rula filmul, iar pentru a va opri, scrieti 'stop':");
-            while (true)
+    public void StergereMovie(string selectedmovie, List<Sala>sali)
+    {
+        foreach(Movie movie in _movies)
+        {
+            if (movie.GetName() == selectedmovie)
             {
-                Console.WriteLine("Introduceti anul (yyyy):");
-                string an = Console.ReadLine();
-                int locuri = 0;
-
-                if (an.ToLower() == "stop")
+                _movies.Remove(movie);
+                break;
+            }
+        }
+        foreach (Sala sala in sali)
+        {
+            foreach (Movie movie in sala.GetMovies())
+            {
+                if (movie.GetName() == selectedmovie)
+                {
+                    sala.GetMovies().Remove(movie);
                     break;
-                try
-                {
-                    Console.WriteLine("Luna:");
-                    int month = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Ziua:");
-                    int day = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Ora:");
-                    int hour = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Minutul:");
-                    int minute = int.Parse(Console.ReadLine());
-                    int year = int.Parse(an);
-
-                    film.MakeDate(year, month, day, hour, minute);
-                    film.AddTakenSeat(locuri);
-
-                    _movies.Add(film);
-                    _sali[id-1].AddMovie(film);
-                    Console.WriteLine("Film adaugat cu succes!");
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Data introdusa este gresita.Incercati din nou.");
                 }
             }
         }
-        else
-        {
-            Console.WriteLine("Nu s-a adaugat niciun film.");
-        }
-
     }
 
-    public void StergereMovie()
-    {
-        for (int i = 0; i < _movies.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}.{_movies[i].GetName()}");
-        }
-
-        Console.WriteLine("Introduceti numarul filmului pe care doriti sa il stergeti:");
-        int index = int.Parse(Console.ReadLine()) - 1;
-        if (index < 0 || index >= _movies.Count)
-        {
-            Console.WriteLine("Nu ati selectat corect filmul, incercati din nou.");
-            return;
-        }
-
-        _movies.RemoveAt(index);
-        Console.WriteLine("Filmul a fost sters cu succes!");
-    }
-
-    public void ModificareInterval()
+    /*public void ModificareInterval()
     {
         for (int i = 0; i < _movies.Count; i++)
         {
@@ -386,29 +347,7 @@ public class DataManager
             Console.WriteLine("Optiunea aleasa nu este valida.");
         }
 
-    }
-
-    public void ModificareLocuriSala()
-    {
-        Console.WriteLine("Alegeti numarul salii pentru care doriti modificare: ");
-        for (int i = 0; i < _sali.Count; i++)
-        {
-            Console.WriteLine($"SALA {_sali[i].GetIdSala()}");
-        }
-        int sala = int.Parse(Console.ReadLine()) - 1;
-
-        if(sala >= 0 && sala < _sali.Count)
-        {
-            Console.WriteLine($"Sala {sala + 1} are {_sali[sala].GetNumberOfSeats()} locuri.\nIntroduceti noul numar de locuri disponibile:");
-            int locuri = int.Parse(Console.ReadLine());
-            _sali[sala] = new Sala(locuri, _sali[sala].GetIdSala());
-            Console.WriteLine("Locurile au fost modificate cu succes!");
-        }
-        else
-        {
-            Console.WriteLine("Sala nu a fost gasita.");
-        }
-    }
+    }*/
     
 
     //PENTRU UTILIZATOR DE AICI IN JOS
